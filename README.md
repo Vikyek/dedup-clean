@@ -79,3 +79,8 @@ You can integrate this utility directly into Thunar's right-click context menu:
    - **Command:** `python3 /home/v/Projects/Dedup/cli.py --notify %F`
    - **Icon:** `edit-clear` (or any clean brush icon)
    - **Under Appearance Conditions tab:** Check **Directories** and set File Pattern to `*`.
+
+---
+
+## Part of a Larger Collection
+This project is part of the **[Thunar-Action-Collection](https://github.com/Vikyek/Thunar-Action-Collection)**—a curated collection of custom Thunar action scripts and utilities designed to enhance the Thunar File Manager on Linux. Visit the collection repository for other useful actions and full setup guides.
