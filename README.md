@@ -1,8 +1,25 @@
 # Dedup & Clean
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A premium Python utility designed to scan directory structures, detect duplicate files by hash values, remove empty files (0-byte size), cleanup Windows leftover files (like `desktop.ini` and `thumbs.db`), clean up copy suffixes (renaming `file - Copy.txt` to `file.txt`), and purge empty directories.
 
 This project packages the core deduplication and cleanup features into a modular package with three convenient interfaces.
+
+---
+
+## 📋 Requirements & Dependencies
+
+- **Python:** Python 3.8+
+- **System Utilities:** `libnotify` (`notify-send` for desktop notification alerts)
+- **GUI & Web Dependencies:**
+  - `python-tkinter` (standard library for standalone desktop GUI)
+  - `Flask>=2.0.0` (for local Web Dashboard, see `requirements.txt`)
+
+Install on Arch Linux:
+```bash
+sudo pacman -S python python-flask libnotify tk
+```
 
 ---
 
@@ -18,52 +35,58 @@ This project packages the core deduplication and cleanup features into a modular
 
 ## 🚀 Installation & Setup
 
-Ensure Python 3 is installed.
-
+### Automated Installation
 ```bash
-# Navigate to the Dedup folder
-cd Dedup
+git clone https://github.com/Vikyek/dedup-clean.git
+cd dedup-clean
+chmod +x install.sh
+./install.sh
+```
 
-# (Optional) Install Flask for the Web UI
+### Manual Installation
+```bash
+cd dedup-clean
 pip install -r requirements.txt
 ```
 
 ---
 
-## 💻 Running the Interfaces
+## 💻 Running the Interfaces & Usage Examples
 
 ### 1. Command Line Interface (CLI)
 Run the script, passing targets as arguments:
 
 ```bash
 # Basic run on current folder
-python3 cli.py
+dedup-clean
 
 # Scan specific directories
-python3 cli.py /path/to/folder1 /path/to/folder2
+dedup-clean /path/to/folder1 /path/to/folder2
 
 # Turn off copy suffix renaming or Windows file cleanups
-python3 cli.py --no-rename --no-win-clean
+dedup-clean --no-rename --no-win-clean
 
 # Run a simulation only (Dry Run)
-python3 cli.py -d
+dedup-clean -d
 
 # Non-interactive desktop notification run (perfect for shortcuts)
-python3 cli.py --notify /path/to/folder
+dedup-clean --notify /path/to/folder
 ```
 
 ### 2. Standalone Desktop GUI
 Launch the dark-themed desktop Tkinter interface:
 
 ```bash
-python3 gui.py
+dedup-clean-gui
+# Or: python3 gui.py
 ```
 
 ### 3. Local Web Dashboard
 Launch the Flask web server:
 
 ```bash
-python3 web.py
+dedup-clean-web
+# Or: python3 web.py
 ```
 Open **[http://localhost:5000](http://localhost:5000)** in your web browser. This interface separates results into individual review tabs (Duplicates, Empty Files, Windows remnants, Renames, Folders) and streams live cleanup logs to a terminal console.
 
@@ -76,11 +99,16 @@ You can integrate this utility directly into Thunar's right-click context menu:
 1. Open Thunar and navigate to **Edit** ➔ **Configure custom actions...**
 2. Add or Edit a custom action:
    - **Name:** `Deduplicate & Clean Files`
-   - **Command:** `python3 /home/v/Projects/Dedup/cli.py --notify %F`
-   - **Icon:** `edit-clear` (or any clean brush icon)
+   - **Command:** `dedup-clean --notify %F`
+   - **Icon:** `edit-clear`
    - **Under Appearance Conditions tab:** Check **Directories** and set File Pattern to `*`.
 
 ---
 
-## Part of a Larger Collection
+## 🔗 Part of a Larger Collection
 This project is part of the **[Thunar-Action-Collection](https://github.com/Vikyek/Thunar-Action-Collection)**—a curated collection of custom Thunar action scripts and utilities designed to enhance the Thunar File Manager on Linux. Visit the collection repository for other useful actions and full setup guides.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
